@@ -1,0 +1,222 @@
+<html>
+<!-- Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)!-->
+
+<head>
+    <title>NoteWriter</title>
+    <meta name="description"
+        content="Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)">
+    <meta name="author" content="Silvio Santoriello">
+
+    <!--Icons script-->
+    <script src="https://kit.fontawesome.com/ec8219a77f.js" crossorigin="anonymous"></script>
+
+    <!--Redirect to mobile page if on a mobile device-->
+    <script type='text/javascript'>
+
+        var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
+            .toLowerCase()));
+
+        if (mobile) {
+
+
+            window.location.replace("mobile.html");
+
+        } else { }
+    </script>
+
+
+    <!--Print stuff written in the editor-->
+    <script type="text/javascript">
+
+
+        function printContent() {
+            document.getElementById('campotesto').contentWindow.print();
+        }
+    </script>
+
+
+    <!--Legal stuff-->
+    <script type="text/javascript">
+        var _iub = _iub || [];
+        _iub.csConfiguration = {
+            "lang": "it",
+            "siteId": 1470605,
+            "cookiePolicyId": 76396991
+        };
+    </script>
+    <script type="text/javascript" src="https://cdn.iubenda.com/cookie_solution/safemode/iubenda_cs.js" charset="UTF-8"
+        async></script>
+
+
+    <!--CSS-->
+    <link rel="stylesheet" href="../css/style.css">
+
+</head>
+
+<body onload="enableEditMode();">
+    
+
+    <div id="notewriter" align="center">
+
+        <h1><a href="."><img src="../img/logo.png"> </a></br>
+        </h1>
+        <div id="editSection" align="center">
+            <button onclick="execCmd('bold');"><i class="fas fa-bold"></i></button>
+            <button onclick="execCmd('italic');"><i class="fas fa-italic"></i></button>
+            <button onclick="execCmd('underline');"><i class="fas fa-underline"></i></button>
+            <button onclick="execCmd('strikeThrough');"><i class="fas fa-strikethrough"></i></button>
+            <button onclick="execCmd('justifyLeft');"><i class="fas fa-align-left"></i></button>
+            <button onclick="execCmd('justifyCenter');"><i class="fas fa-align-center"></i></button>
+            <button onclick="execCmd('justifyRight');"><i class="fas fa-align-right"></i></button>
+            <button onclick="execCmd('justifyFull');"><i class="fas fa-align-justify"></i></button>
+            <button onclick="execCmd('cut');"><i class="fas fa-cut"></i></button>
+            <button onclick="execCmd('copy');"><i class="fas fa-copy"></i></button>
+            <button onclick="execCmd('indent');"><i class="fas fa-indent"></i></button>
+            <button onclick="execCmd('outdent');"><i class="fas fa-outdent"></i></button>
+            <button onclick="execCmd('subscript');"><i class="fas fa-subscript"></i></button>
+            <button onclick="execCmd('superscript');"><i class="fas fa-superscript"></i></button>
+            <button onclick="execCmd('undo');"><i class="fas fa-undo"></i></button>
+            <button onclick="execCmd('redo');"><i class="fas fa-redo"></i></button>
+            <button onclick="execCmd('insertUnorderedList');"><i class="fas fa-list-ul"></i></button>
+            <button onclick="execCmd('insertOrderedList');"><i class="fas fa-list-ol"></i></button>
+            <button onclick="execCommandWithArg('createLink', prompt('Enter a URL', 'http://'));"><i
+                    class="fas fa-link"></i></button>
+            <button onclick="execCmd('unlink');"><i class="fas fa-unlink"></i></button>
+            <button onclick="toggleSource();"><i class="fas fa-code"></i></button>
+            <button onclick="toggleEdit();">Toggle Edit</button>
+            <br />
+            <select onchange="execCommandWithArg('fontName', this.value);">
+                <option value="Arial">Arial</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Courier">Courier</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Lucida Sans">Lucida Sans</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Calibri">Calibri</option>
+
+            </select>
+            <select onchange="execCommandWithArg('fontSize', this.value);">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+            <button onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));"><i
+                    class="fas fa-file-image"></i></button>
+            <button onclick="execCmd('selectAll');">Select All</button>
+        </div>
+        <p>
+
+        </p>
+
+        <!--Textarea-->
+        <div id="mybox" align="center">
+            <iframe name="richTextField" style="width: 1000px; height: 500px;" id="campotesto"></iframe>
+            <p></p>
+        </div>
+
+    </div>
+
+
+
+    <!--Editor code-->
+    <script type="text/javascript">
+        var showingSourceCode = false;
+        var isInEditMode = true;
+
+        function enableEditMode() {
+            richTextField.document.designMode = 'On';
+        }
+
+        function execCmd(command) {
+            richTextField.document.execCommand(command, false, null);
+        }
+
+        function execCommandWithArg(command, arg) {
+            richTextField.document.execCommand(command, false, arg);
+        }
+
+        function toggleSource() {
+            if (showingSourceCode) {
+                richTextField.document.getElementsByTagName('body')[0].innerHTML = richTextField.document
+                    .getElementsByTagName('body')[0].textContent;
+                showingSourceCode = false;
+            } else {
+                richTextField.document.getElementsByTagName('body')[0].textContent = richTextField.document
+                    .getElementsByTagName('body')[0].innerHTML;
+                showingSourceCode = true;
+            }
+        }
+
+        function toggleEdit() {
+            if (isInEditMode) {
+                richTextField.document.designMode = 'Off';
+                isInEditMode = false;
+            } else {
+                richTextField.document.designMode = 'On';
+                isInEditMode = true;
+            }
+        }
+    </script>
+
+
+    <footer align="center">
+        <div id="legal-stuff">
+            <a href="https://www.iubenda.com/privacy-policy/76396991" class="iubenda-white iubenda-embed "
+                title="Privacy Policy ">Privacy Policy</a>
+            <script type="text/javascript">
+                (function (w, d) {
+                    var loader = function () {
+                        var s = d.createElement("script"),
+                            tag = d.getElementsByTagName("script")[0];
+                        s.src = "https://cdn.iubenda.com/iubenda.js";
+                        tag.parentNode.insertBefore(s, tag);
+                    };
+                    if (w.addEventListener) {
+                        w.addEventListener("load", loader, false);
+                    } else if (w.attachEvent) {
+                        w.attachEvent("onload", loader);
+                    } else {
+                        w.onload = loader;
+                    }
+                })(window, document);
+            </script>
+
+            <a href="https://www.iubenda.com/privacy-policy/76396991/cookie-policy" class="iubenda-white iubenda-embed "
+                title="Cookie Policy ">Cookie Policy</a>
+            <script type="text/javascript">
+                (function (w, d) {
+                    var loader = function () {
+                        var s = d.createElement("script"),
+                            tag = d.getElementsByTagName("script")[0];
+                        s.src = "https://cdn.iubenda.com/iubenda.js";
+                        tag.parentNode.insertBefore(s, tag);
+                    };
+                    if (w.addEventListener) {
+                        w.addEventListener("load", loader, false);
+                    } else if (w.attachEvent) {
+                        w.attachEvent("onload", loader);
+                    } else {
+                        w.onload = loader;
+                    }
+                })(window, document);
+            </script>
+        </div>
+        <h4>
+            Versione 2.0 </h4>
+        <h5> Copyright (C)2018 - Made with &hearts; in Italy by <a href="https://linktr.ee/silviosanto"
+                rel="external">Silvio Santoriello</a>
+        </h5>
+    </footer>
+</body>
+
+</html>

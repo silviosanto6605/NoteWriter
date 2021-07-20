@@ -1,0 +1,27 @@
+body {
+    background-color: #18205F;;
+}
+
+h1 {
+    color: ghostwhite;
+}
+
+h4 {
+    color: red;
+    text-decoration: none;
+}
+
+iframe {
+    background-color: white;
+}
+
+button{
+
+    font-size: 18px;
+    background-color: transparent;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+
+}
