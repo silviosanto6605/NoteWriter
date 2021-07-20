@@ -1,6 +1,8 @@
-<html>
+<html lang="it">
 <!-- Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)!-->
 
+
+<!--TODO: RISCRIVERE TUTTO IL CODICE CON TEXTAREA ANZICHE IFRAME -->
 <head>
     <title>NoteWriter</title>
     <meta name="description"
@@ -11,9 +13,44 @@
     <script src="https://kit.fontawesome.com/ec8219a77f.js" crossorigin="anonymous"></script>
 
     <!--Redirect to mobile page if on a mobile device-->
+
+
+
     <script type='text/javascript'>
 
-        var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
+        var DarkMode = false;
+
+
+        function ChangeMode() {
+            var x = document.querySelectorAll("button");
+
+            if (!DarkMode){
+                document.getElementsByTagName('body')[0].style = "background-color: #18205F";
+                document.getElementsByTagName('iframe')[0].style = "background-color: #18205F";
+                for (var i = 0; i < x.length; i++) {
+                    x[i].style.backgroundColor = "white";
+                }
+                document.getElementById('titolo').style.color = "white";
+                DarkMode = true;
+
+
+            }
+            else if (DarkMode){
+
+                document.getElementsByTagName('body')[0].style = "background-color: #EFD6AC";
+                document.getElementsByTagName('iframe')[0].style = "background-color: white";
+                document.getElementById('titolo').style.color = "black";
+                var j;
+                for (j = 0; j < x.length; j++) {
+                    x[j].style.backgroundColor = "transparent";
+                }
+                DarkMode = false;
+            }
+
+    }
+
+
+    var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
             .toLowerCase()));
 
         if (mobile) {
@@ -49,7 +86,7 @@
 
 
     <!--CSS-->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
@@ -58,8 +95,8 @@
 
     <div id="notewriter" align="center">
 
-        <h1><a href="."><img src="../img/logo.png"> </a></br>
-        </h1>
+        <a href="."><img src="img/logo-new-resize.png" id="logo"> </a></br>
+        <h1 style="color: black; font-family: 'Courier New'" id="titolo">NoteWriter: il tuo semplice e veloce editor di testo online</h1>
         <div id="editSection" align="center">
             <button onclick="execCmd('bold');"><i class="fas fa-bold"></i></button>
             <button onclick="execCmd('italic');"><i class="fas fa-italic"></i></button>
@@ -113,14 +150,15 @@
             <button onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));"><i
                     class="fas fa-file-image"></i></button>
             <button onclick="execCmd('selectAll');">Select All</button>
+            <button onclick="ChangeMode()">Change Mode</button>
         </div>
         <p>
 
         </p>
 
-        <!--Textarea-->
+        <!--Text area-->
         <div id="mybox" align="center">
-            <iframe name="richTextField" style="width: 1000px; height: 500px;" id="campotesto"></iframe>
+            <iframe name="richTextField" frameborder="1" id="campotesto"></iframe>
             <p></p>
         </div>
 
