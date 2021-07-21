@@ -7,67 +7,17 @@
     <title>NoteWriter</title>
     <meta name="description"
           content="Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)">
+
     <meta name="author" content="Silvio Santoriello">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=no">
 
     <!--Icons script-->
     <script src="https://kit.fontawesome.com/ec8219a77f.js" crossorigin="anonymous"></script>
 
-    <!--Redirect to mobile page if on a mobile device-->
 
 
     <script type='text/javascript'>
 
-        var DarkMode = false;
-
-
-        function ChangeMode() {
-            var x = document.querySelectorAll("button");
-
-            if (!DarkMode) {
-                document.getElementsByTagName('body')[0].style = "background-color: #18205F";
-                document.getElementsByTagName('iframe')[0].style = "background-color: white";
-                for (var i = 0; i < x.length; i++) {
-                    x[i].style.backgroundColor = "white";
-                }
-                document.getElementById('titolo').style.color = "white";
-                DarkMode = true;
-
-
-            } else if (DarkMode) {
-
-                document.getElementsByTagName('body')[0].style = "background-color: #EFD6AC";
-                document.getElementsByTagName('iframe')[0].style = "background-color: #EFD6AC";
-                document.getElementById('titolo').style.color = "black";
-                var j;
-                for (j = 0; j < x.length; j++) {
-                    x[j].style.backgroundColor = "transparent";
-                }
-                DarkMode = false;
-            }
-
-        }
-
-
-        var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
-            .toLowerCase()));
-
-        if (mobile) {
-
-
-            window.location.replace("mobile.html");
-
-        } else {
-        }
-    </script>
-
-
-    <!--Print stuff written in the editor-->
-    <script type="text/javascript">
-
-
-        function printContent() {
-            document.getElementById('campotesto').contentWindow.print();
-        }
     </script>
 
 
@@ -110,6 +60,15 @@
         <button onclick="execCmd('copy');"><i class="fas fa-copy"></i></button>
         <button onclick="execCmd('indent');"><i class="fas fa-indent"></i></button>
         <button onclick="execCmd('outdent');"><i class="fas fa-outdent"></i></button>
+        <button onclick="execCmd('insertHorizontalRule');">HR</button>
+        <button onclick="displayHighlightColorPicker();"><i class="fas fa-highlighter"></i></button>
+        <div id="highLighSection" style="border: 2px solid black; display: none; padding: 4px;">
+            <input type="color" id="colorPicker" name="color">
+            <button id="confirmColor" onclick='execCommandWithArg("hiliteColor",getColorPickerValue().toString())'><i
+                    class="fas fa-check"></i></button>
+            <button id="resetColor" onclick='execCommandWithArg("hiliteColor","transparent")'><i
+                    class="fas fa-times"></i></button>
+        </div>
         <button onclick="execCmd('subscript');"><i class="fas fa-subscript"></i></button>
         <button onclick="execCmd('superscript');"><i class="fas fa-superscript"></i></button>
         <button onclick="execCmd('undo');"><i class="fas fa-undo"></i></button>
@@ -168,8 +127,53 @@
 
 <!--Editor code-->
 <script type="text/javascript">
+
+    var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
+        .toLowerCase()));
+
+    if (mobile) {
+
+
+        document.getElementById('titolo').style.visibility = "hidden";
+        document.getElementById('titolo').style.visibility = "hidden";
+        document.getElementById('campotesto').style.width = "100%";
+        document.getElementById('campotesto').style.height = "100%";
+
+    } else {
+    }
+
     var showingSourceCode = false;
     var isInEditMode = true;
+    var DarkMode = false;
+    var colorPickerisHidden = true
+
+
+    function ChangeMode() {
+        var x = document.querySelectorAll("button");
+
+        if (!DarkMode) {
+            document.getElementsByTagName('body')[0].style = "background-color: #18205F";
+            document.getElementsByTagName('iframe')[0].style = "background-color: white";
+            for (var i = 0; i < x.length; i++) {
+                x[i].style.backgroundColor = "white";
+            }
+            document.getElementById('titolo').style.color = "white";
+            DarkMode = true;
+
+
+        } else if (DarkMode) {
+
+            document.getElementsByTagName('body')[0].style = "background-color: #EFD6AC";
+            document.getElementsByTagName('iframe')[0].style = "background-color: #EFD6AC";
+            document.getElementById('titolo').style.color = "black";
+            var j;
+            for (j = 0; j < x.length; j++) {
+                x[j].style.backgroundColor = "transparent";
+            }
+            DarkMode = false;
+        }
+
+    }
 
     function enableEditMode() {
         richTextField.document.designMode = 'On';
@@ -195,6 +199,10 @@
         }
     }
 
+    function printContent() {
+        document.getElementById('campotesto').contentWindow.print();
+    }
+
     function toggleEdit() {
         if (isInEditMode) {
             richTextField.document.designMode = 'Off';
@@ -203,6 +211,23 @@
             richTextField.document.designMode = 'On';
             isInEditMode = true;
         }
+    }
+
+
+    function displayHighlightColorPicker() {
+        if (colorPickerisHidden) {
+            document.getElementById('highLighSection').style.display = "inline";
+            colorPickerisHidden = false;
+        } else if (!colorPickerisHidden) {
+            document.getElementById('highLighSection').style.display = "none";
+            colorPickerisHidden = true;
+        }
+
+    }
+
+    function getColorPickerValue() {
+        return document.getElementById("colorPicker").value;
+
     }
 </script>
 
