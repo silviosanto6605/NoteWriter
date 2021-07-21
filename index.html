@@ -121,6 +121,7 @@
         <button onclick="execCmd('selectAll');">Select All</button>
         <button onclick="ChangeMode()"> Dark mode <i class="fas fa-adjust"></i></button>
         <button onclick="printContent()"><i class="fas fa-print"></i></button>
+        <button onclick="saveTextAsFile(document.getElementById('campotesto').contentWindow.document.body.innerText.toString())"><i class="fas fa-save"></i></button>
     </div>
     <p>
 
@@ -128,7 +129,7 @@
 
     <!--Text area-->
     <div id="mybox" align="center">
-        <iframe name="richTextField" frameborder="1" id="campotesto"></iframe>
+        <iframe name="richTextField" frameborder="1" id="campotesto" style="width: 90%; height: 100%"></iframe>
         <p></p>
     </div>
 
@@ -140,22 +141,22 @@
 
     var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
         .toLowerCase()));
-
-    if (mobile) {
-
-
-        document.getElementById('titolo').style.visibility = "hidden";
-        document.getElementById('titolo').style.visibility = "hidden";
-        document.getElementById('campotesto').style.width = "100%";
-        document.getElementById('campotesto').style.height = "100%";
-
-    } else {
-    }
-
     var showingSourceCode = false;
     var isInEditMode = true;
     var DarkMode = false;
     var colorPickerisHidden = true
+
+    if (mobile) {
+
+        document.getElementById('titolo').style.visibility = "hidden";
+        document.getElementById('titolo').style.visibility = "hidden";
+        /*document.getElementById('campotesto').style.width = "100%";
+        document.getElementById('campotesto').style.height = "100%";*/
+
+    } else {
+    }
+
+
 
 
     function ChangeMode() {
@@ -237,7 +238,33 @@
 
     function getColorPickerValue() {
         return document.getElementById("colorPicker").value;
+    }
 
+    function saveTextAsFile(textToWrite) {
+        var textFileAsBlob = new Blob([ textToWrite ], { type: 'text/plain' });
+        var fileNameToSaveAs = "file.txt"; //filename.extension
+
+        var downloadLink = document.createElement("a");
+        downloadLink.download = fileNameToSaveAs;
+        downloadLink.innerHTML = "Download File";
+        if (window.webkitURL != null) {
+            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+        } else {
+            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+            downloadLink.onclick = destroyClickedElement;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+        }
+
+        downloadLink.click();
+    }
+
+    var button = document.getElementById('save');
+    button.addEventListener('click', saveTextAsFile);
+
+    function destroyClickedElement(event) {
+        // remove the link from the DOM
+        document.body.removeChild(event.target);
     }
 </script>
 
