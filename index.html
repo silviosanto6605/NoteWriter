@@ -2,7 +2,6 @@
 <!-- Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2021 (C)!-->
 
 
-
 <head>
     <title>NoteWriter</title>
     <meta name="description"
@@ -10,25 +9,24 @@
 
     <meta name="author" content="Silvio Santoriello">
     <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=no">
-    <meta name="google-site-verification" content="lxKyuP1Uvr02CJdlEHTwWLGvsxDU-3BJ7XoketqxU4k" />
+    <meta name="google-site-verification" content="lxKyuP1Uvr02CJdlEHTwWLGvsxDU-3BJ7XoketqxU4k"/>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQVLEGKB4Z"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-PQVLEGKB4Z');
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PQVLEGKB4Z');
     </script>
 
     <!--Icons script-->
     <script src="https://kit.fontawesome.com/ec8219a77f.js" crossorigin="anonymous"></script>
-
-
-
-    <script type='text/javascript'>
-
-    </script>
 
 
     <!--Legal stuff-->
@@ -121,7 +119,8 @@
         <button onclick="execCmd('selectAll');">Select All</button>
         <button onclick="ChangeMode()"> Dark mode <i class="fas fa-adjust"></i></button>
         <button onclick="printContent()"><i class="fas fa-print"></i></button>
-        <button onclick="saveTextAsFile(document.getElementById('campotesto').contentWindow.document.body.innerText.toString())"><i class="fas fa-save"></i></button>
+        <button onclick="saveTextAsFile(document.getElementById('campotesto').contentWindow.document.body.innerText.toString())">
+            <i class="fas fa-save"></i></button>
     </div>
     <p>
 
@@ -130,6 +129,7 @@
     <!--Text area-->
     <div id="mybox" align="center">
         <iframe name="richTextField" frameborder="1" id="campotesto" style="width: 90%; height: 100%"></iframe>
+        <script type="text/javascript">document.getElementById('campotesto').contentWindow.document.body.innerHTML = localStorage.getItem("content")</script>
         <p></p>
     </div>
 
@@ -155,8 +155,6 @@
 
     } else {
     }
-
-
 
 
     function ChangeMode() {
@@ -224,6 +222,10 @@
         }
     }
 
+    var as = window.setInterval(function autoSave() {
+        localStorage.setItem("content", document.getElementById('campotesto').contentWindow.document.body.innerHTML.toString())
+    }, 5000);
+
 
     function displayHighlightColorPicker() {
         if (colorPickerisHidden) {
@@ -236,12 +238,13 @@
 
     }
 
+
     function getColorPickerValue() {
         return document.getElementById("colorPicker").value;
     }
 
     function saveTextAsFile(textToWrite) {
-        var textFileAsBlob = new Blob([ textToWrite ], { type: 'text/plain' });
+        var textFileAsBlob = new Blob([textToWrite], {type: 'text/plain'});
         var fileNameToSaveAs = "file.txt"; //filename.extension
 
         var downloadLink = document.createElement("a");
@@ -313,8 +316,9 @@
     </div>
     <h4>
         Versione 2.0 </h4>
-    <h5 style="font-family: 'Courier New'"> Copyright (C)2021 - Made with &hearts; in Italy by <a href="https://linktr.ee/silviosanto"
-                                                               rel="external">Silvio Santoriello</a>
+    <h5 style="font-family: 'Courier New'"> Copyright (C)2021 - Made with &hearts; in Italy by <a
+            href="https://linktr.ee/silviosanto"
+            rel="external">Silvio Santoriello</a>
     </h5>
 </footer>
 </body>
