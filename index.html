@@ -5,13 +5,14 @@
 <head>
     <title>NoteWriter</title>
     <meta name="description"
-          content="Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)">
+        content="Un semplice e leggero note writer ibrido  scritto con tecnologie web -By Silvio Santoriello 2018 (C)">
 
     <meta name="author" content="Silvio Santoriello">
     <meta name="viewport" content="width=device-width, initial-scale=0.9, user-scalable=no">
-    <meta name="google-site-verification" content="lxKyuP1Uvr02CJdlEHTwWLGvsxDU-3BJ7XoketqxU4k"/>
+    <meta name="google-site-verification" content="lxKyuP1Uvr02CJdlEHTwWLGvsxDU-3BJ7XoketqxU4k" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PQVLEGKB4Z"></script>
+    <script src="js/editor.js"></script>
     <script>
 
         window.dataLayer = window.dataLayer || [];
@@ -25,8 +26,8 @@
         gtag('config', 'G-PQVLEGKB4Z');
     </script>
 
-    <!--Icons script-->
-    <script src="https://kit.fontawesome.com/ec8219a77f.js" crossorigin="anonymous"></script>
+    <!--Icons-->
+    <link href="css/all.css" rel="stylesheet">
 
 
     <!--Legal stuff-->
@@ -39,7 +40,7 @@
         };
     </script>
     <script type="text/javascript" src="https://cdn.iubenda.com/cookie_solution/safemode/iubenda_cs.js" charset="UTF-8"
-            async></script>
+        async></script>
 
 
     <!--CSS-->
@@ -50,277 +51,148 @@
 <body onload="enableEditMode();">
 
 
-<div id="notewriter" align="center">
+    <div id="notewriter" align="center">
 
-    <a href="."><img src="img/logo-new-resize.png" id="logo"> </a></br>
-    <h1 style="color: black; font-family: 'Courier New'" id="titolo">NoteWriter: il tuo semplice e veloce editor di
-        testo online</h1>
-    <div id="editSection" align="center">
-        <button onclick="execCmd('bold');"><i class="fas fa-bold"></i></button>
-        <button onclick="execCmd('italic');"><i class="fas fa-italic"></i></button>
-        <button onclick="execCmd('underline');"><i class="fas fa-underline"></i></button>
-        <button onclick="execCmd('strikeThrough');"><i class="fas fa-strikethrough"></i></button>
-        <button onclick="execCmd('justifyLeft');"><i class="fas fa-align-left"></i></button>
-        <button onclick="execCmd('justifyCenter');"><i class="fas fa-align-center"></i></button>
-        <button onclick="execCmd('justifyRight');"><i class="fas fa-align-right"></i></button>
-        <button onclick="execCmd('justifyFull');"><i class="fas fa-align-justify"></i></button>
-        <button onclick="execCmd('cut');"><i class="fas fa-cut"></i></button>
-        <button onclick="execCmd('copy');"><i class="fas fa-copy"></i></button>
-        <button onclick="execCmd('indent');"><i class="fas fa-indent"></i></button>
-        <button onclick="execCmd('outdent');"><i class="fas fa-outdent"></i></button>
-        <button onclick="execCmd('insertHorizontalRule');">HR</button>
-        <button onclick="displayHighlightColorPicker();"><i class="fas fa-highlighter"></i></button>
-        <div id="highLighSection" style="border: 2px solid black; display: none; padding: 4px;">
-            <input type="color" id="colorPicker" name="color">
-            <button id="confirmColor" onclick='execCommandWithArg("hiliteColor",getColorPickerValue().toString())'><i
-                    class="fas fa-check"></i></button>
-            <button id="resetColor" onclick='execCommandWithArg("hiliteColor","transparent")'><i
-                    class="fas fa-times"></i></button>
+        <a href="."><img src="img/logo-new-resize.png" id="logo"> </a></br>
+        <h1 style="color: black; font-family: 'Courier New'" id="titolo">NoteWriter: il tuo semplice e veloce editor di
+            testo online</h1>
+        <div id="editSection" align="center">
+            <button onclick="execCmd('bold');"><i class="fas fa-bold"></i></button>
+            <button onclick="execCmd('italic');"><i class="fas fa-italic"></i></button>
+            <button onclick="execCmd('underline');"><i class="fas fa-underline"></i></button>
+            <button onclick="execCmd('strikeThrough');"><i class="fas fa-strikethrough"></i></button>
+            <button onclick="execCmd('justifyLeft');"><i class="fas fa-align-left"></i></button>
+            <button onclick="execCmd('justifyCenter');"><i class="fas fa-align-center"></i></button>
+            <button onclick="execCmd('justifyRight');"><i class="fas fa-align-right"></i></button>
+            <button onclick="execCmd('justifyFull');"><i class="fas fa-align-justify"></i></button>
+            <button onclick="execCmd('cut');"><i class="fas fa-cut"></i></button>
+            <button onclick="execCmd('copy');"><i class="fas fa-copy"></i></button>
+            <button onclick="execCmd('indent');"><i class="fas fa-indent"></i></button>
+            <button onclick="execCmd('outdent');"><i class="fas fa-outdent"></i></button>
+            <button onclick="execCmd('insertHorizontalRule');">HR</button>
+            <button onclick="displayHighlightColorPicker();"><i class="fas fa-highlighter"></i></button>
+            <div id="highLighSection" style="border: 2px solid black; display: none; padding: 4px;">
+                <input type="color" id="colorPicker" name="color">
+                <button id="confirmColor"
+                    onclick='execCommandWithArg("hiliteColor",getColorPickerValue().toString())'><i
+                        class="fas fa-check"></i></button>
+                <button id="resetColor" onclick='execCommandWithArg("hiliteColor","transparent")'><i
+                        class="fas fa-times"></i></button>
+            </div>
+            <button onclick="execCmd('subscript');"><i class="fas fa-subscript"></i></button>
+            <button onclick="execCmd('superscript');"><i class="fas fa-superscript"></i></button>
+            <button onclick="execCmd('undo');"><i class="fas fa-undo"></i></button>
+            <button onclick="execCmd('redo');"><i class="fas fa-redo"></i></button>
+            <button onclick="execCmd('insertUnorderedList');"><i class="fas fa-list-ul"></i></button>
+            <button onclick="execCmd('insertOrderedList');"><i class="fas fa-list-ol"></i></button>
+            <button onclick="execCommandWithArg('createLink', prompt('Enter a URL', 'http://'));"><i
+                    class="fas fa-link"></i></button>
+            <button onclick="execCmd('unlink');"><i class="fas fa-unlink"></i></button>
+            <button onclick="toggleSource();"><i class="fas fa-code"></i></button>
+            <button onclick="toggleEdit();">Toggle Edit</button>
+            <br />
+            <select onchange="execCommandWithArg('fontName', this.value);">
+                <option value="Arial">Arial</option>
+                <option value="Comic Sans MS">Comic Sans MS</option>
+                <option value="Courier">Courier</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Lucida Sans">Lucida Sans</option>
+                <option value="Trebuchet MS">Trebuchet MS</option>
+                <option value="Impact">Impact</option>
+                <option value="Calibri">Calibri</option>
+
+            </select>
+            <select onchange="execCommandWithArg('fontSize', this.value);">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+            <button onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));"><i
+                    class="fas fa-file-image"></i></button>
+            <button onclick="execCmd('selectAll');">Select All</button>
+            <button onclick="ChangeMode()"> Dark mode <i class="fas fa-adjust"></i></button>
+            <button onclick="printContent()"><i class="fas fa-print"></i></button>
+            <button
+                onclick="saveTextAsFile(document.getElementById('campotesto').contentWindow.document.body.innerText.toString())">
+                <i class="fas fa-save"></i></button>
         </div>
-        <button onclick="execCmd('subscript');"><i class="fas fa-subscript"></i></button>
-        <button onclick="execCmd('superscript');"><i class="fas fa-superscript"></i></button>
-        <button onclick="execCmd('undo');"><i class="fas fa-undo"></i></button>
-        <button onclick="execCmd('redo');"><i class="fas fa-redo"></i></button>
-        <button onclick="execCmd('insertUnorderedList');"><i class="fas fa-list-ul"></i></button>
-        <button onclick="execCmd('insertOrderedList');"><i class="fas fa-list-ol"></i></button>
-        <button onclick="execCommandWithArg('createLink', prompt('Enter a URL', 'http://'));"><i
-                class="fas fa-link"></i></button>
-        <button onclick="execCmd('unlink');"><i class="fas fa-unlink"></i></button>
-        <button onclick="toggleSource();"><i class="fas fa-code"></i></button>
-        <button onclick="toggleEdit();">Toggle Edit</button>
-        <br/>
-        <select onchange="execCommandWithArg('fontName', this.value);">
-            <option value="Arial">Arial</option>
-            <option value="Comic Sans MS">Comic Sans MS</option>
-            <option value="Courier">Courier</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Tahoma">Tahoma</option>
-            <option value="Times New Roman">Times New Roman</option>
-            <option value="Verdana">Verdana</option>
-            <option value="Lucida Sans">Lucida Sans</option>
-            <option value="Trebuchet MS">Trebuchet MS</option>
-            <option value="Impact">Impact</option>
-            <option value="Calibri">Calibri</option>
+        <p>
 
-        </select>
-        <select onchange="execCommandWithArg('fontSize', this.value);">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-        </select>
-        <button onclick="execCommandWithArg('insertImage', prompt('Enter the image URL', ''));"><i
-                class="fas fa-file-image"></i></button>
-        <button onclick="execCmd('selectAll');">Select All</button>
-        <button onclick="ChangeMode()"> Dark mode <i class="fas fa-adjust"></i></button>
-        <button onclick="printContent()"><i class="fas fa-print"></i></button>
-        <button onclick="saveTextAsFile(document.getElementById('campotesto').contentWindow.document.body.innerText.toString())">
-            <i class="fas fa-save"></i></button>
-    </div>
-    <p>
+        </p>
 
-    </p>
+        <!--Text area-->
+        <div id="mybox" align="center">
+            <iframe name="richTextField" frameborder="1" id="campotesto" style="width: 90%; height: 100%"></iframe>
+            <script
+                type="text/javascript">document.getElementById('campotesto').contentWindow.document.body.innerHTML = localStorage.getItem("content")</script>
+            <p></p>
+        </div>
 
-    <!--Text area-->
-    <div id="mybox" align="center">
-        <iframe name="richTextField" frameborder="1" id="campotesto" style="width: 90%; height: 100%"></iframe>
-        <script type="text/javascript">document.getElementById('campotesto').contentWindow.document.body.innerHTML = localStorage.getItem("content")</script>
-        <p></p>
     </div>
 
-</div>
+
+    <!--Editor code-->
+    <script type="text/javascript">
+    </script>
 
 
-<!--Editor code-->
-<script type="text/javascript">
+    <footer align="center">
+        <div id="legal-stuff">
+            <a href="https://www.iubenda.com/privacy-policy/76396991" class="iubenda-white iubenda-embed "
+                title="Privacy Policy ">Privacy Policy</a>
+            <script type="text/javascript">
+                    (function (w, d) {
+                        var loader = function () {
+                            var s = d.createElement("script"),
+                                tag = d.getElementsByTagName("script")[0];
+                            s.src = "https://cdn.iubenda.com/iubenda.js";
+                            tag.parentNode.insertBefore(s, tag);
+                        };
+                        if (w.addEventListener) {
+                            w.addEventListener("load", loader, false);
+                        } else if (w.attachEvent) {
+                            w.attachEvent("onload", loader);
+                        } else {
+                            w.onload = loader;
+                        }
+                    })(window, document);
+            </script>
 
-    var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce | palm/i.test(navigator.userAgent
-        .toLowerCase()));
-    var showingSourceCode = false;
-    var isInEditMode = true;
-    var DarkMode = false;
-    var colorPickerisHidden = true
-
-    if (mobile) {
-
-        document.getElementById('titolo').style.visibility = "hidden";
-        document.getElementById('titolo').style.visibility = "hidden";
-        /*document.getElementById('campotesto').style.width = "100%";
-        document.getElementById('campotesto').style.height = "100%";*/
-
-    } else {
-    }
-
-
-    function ChangeMode() {
-        var x = document.querySelectorAll("button");
-
-        if (!DarkMode) {
-            document.getElementsByTagName('body')[0].style = "background-color: #18205F";
-            document.getElementsByTagName('iframe')[0].style = "background-color: white";
-            for (var i = 0; i < x.length; i++) {
-                x[i].style.backgroundColor = "white";
-            }
-            document.getElementById('titolo').style.color = "white";
-            DarkMode = true;
-
-
-        } else if (DarkMode) {
-
-            document.getElementsByTagName('body')[0].style = "background-color: #EFD6AC";
-            document.getElementsByTagName('iframe')[0].style = "background-color: #EFD6AC";
-            document.getElementById('titolo').style.color = "black";
-            var j;
-            for (j = 0; j < x.length; j++) {
-                x[j].style.backgroundColor = "transparent";
-            }
-            DarkMode = false;
-        }
-
-    }
-
-    function enableEditMode() {
-        richTextField.document.designMode = 'On';
-    }
-
-    function execCmd(command) {
-        richTextField.document.execCommand(command, false, null);
-    }
-
-    function execCommandWithArg(command, arg) {
-        richTextField.document.execCommand(command, false, arg);
-    }
-
-    function toggleSource() {
-        if (showingSourceCode) {
-            richTextField.document.getElementsByTagName('body')[0].innerHTML = richTextField.document
-                .getElementsByTagName('body')[0].textContent;
-            showingSourceCode = false;
-        } else {
-            richTextField.document.getElementsByTagName('body')[0].textContent = richTextField.document
-                .getElementsByTagName('body')[0].innerHTML;
-            showingSourceCode = true;
-        }
-    }
-
-    function printContent() {
-        document.getElementById('campotesto').contentWindow.print();
-    }
-
-    function toggleEdit() {
-        if (isInEditMode) {
-            richTextField.document.designMode = 'Off';
-            isInEditMode = false;
-        } else {
-            richTextField.document.designMode = 'On';
-            isInEditMode = true;
-        }
-    }
-
-    var as = window.setInterval(function autoSave() {
-        localStorage.setItem("content", document.getElementById('campotesto').contentWindow.document.body.innerHTML.toString())
-    }, 5000);
-
-
-    function displayHighlightColorPicker() {
-        if (colorPickerisHidden) {
-            document.getElementById('highLighSection').style.display = "inline";
-            colorPickerisHidden = false;
-        } else if (!colorPickerisHidden) {
-            document.getElementById('highLighSection').style.display = "none";
-            colorPickerisHidden = true;
-        }
-
-    }
-
-
-    function getColorPickerValue() {
-        return document.getElementById("colorPicker").value;
-    }
-
-    function saveTextAsFile(textToWrite) {
-        var textFileAsBlob = new Blob([textToWrite], {type: 'text/plain'});
-        var fileNameToSaveAs = "file.txt"; //filename.extension
-
-        var downloadLink = document.createElement("a");
-        downloadLink.download = fileNameToSaveAs;
-        downloadLink.innerHTML = "Download File";
-        if (window.webkitURL != null) {
-            downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
-        } else {
-            downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-            downloadLink.onclick = destroyClickedElement;
-            downloadLink.style.display = "none";
-            document.body.appendChild(downloadLink);
-        }
-
-        downloadLink.click();
-    }
-
-    var button = document.getElementById('save');
-    button.addEventListener('click', saveTextAsFile);
-
-    function destroyClickedElement(event) {
-        // remove the link from the DOM
-        document.body.removeChild(event.target);
-    }
-</script>
-
-
-<footer align="center">
-    <div id="legal-stuff">
-        <a href="https://www.iubenda.com/privacy-policy/76396991" class="iubenda-white iubenda-embed "
-           title="Privacy Policy ">Privacy Policy</a>
-        <script type="text/javascript">
-            (function (w, d) {
-                var loader = function () {
-                    var s = d.createElement("script"),
-                        tag = d.getElementsByTagName("script")[0];
-                    s.src = "https://cdn.iubenda.com/iubenda.js";
-                    tag.parentNode.insertBefore(s, tag);
-                };
-                if (w.addEventListener) {
-                    w.addEventListener("load", loader, false);
-                } else if (w.attachEvent) {
-                    w.attachEvent("onload", loader);
-                } else {
-                    w.onload = loader;
-                }
-            })(window, document);
-        </script>
-
-        <a href="https://www.iubenda.com/privacy-policy/76396991/cookie-policy" class="iubenda-white iubenda-embed "
-           title="Cookie Policy ">Cookie Policy</a>
-        <script type="text/javascript">
-            (function (w, d) {
-                var loader = function () {
-                    var s = d.createElement("script"),
-                        tag = d.getElementsByTagName("script")[0];
-                    s.src = "https://cdn.iubenda.com/iubenda.js";
-                    tag.parentNode.insertBefore(s, tag);
-                };
-                if (w.addEventListener) {
-                    w.addEventListener("load", loader, false);
-                } else if (w.attachEvent) {
-                    w.attachEvent("onload", loader);
-                } else {
-                    w.onload = loader;
-                }
-            })(window, document);
-        </script>
-    </div>
-    <h4>
-        Versione 2.0 </h4>
-    <h5 style="font-family: 'Courier New'"> Copyright (C)2021 - Made with &hearts; in Italy by <a
-            href="https://linktr.ee/silviosanto"
-            rel="external">Silvio Santoriello</a>
-    </h5>
-</footer>
+            <a href="https://www.iubenda.com/privacy-policy/76396991/cookie-policy" class="iubenda-white iubenda-embed "
+                title="Cookie Policy ">Cookie Policy</a>
+            <script type="text/javascript">
+                (function (w, d) {
+                    var loader = function () {
+                        var s = d.createElement("script"),
+                            tag = d.getElementsByTagName("script")[0];
+                        s.src = "https://cdn.iubenda.com/iubenda.js";
+                        tag.parentNode.insertBefore(s, tag);
+                    };
+                    if (w.addEventListener) {
+                        w.addEventListener("load", loader, false);
+                    } else if (w.attachEvent) {
+                        w.attachEvent("onload", loader);
+                    } else {
+                        w.onload = loader;
+                    }
+                })(window, document);
+            </script>
+        </div>
+        <h4>
+            Versione 2.0 </h4>
+        <h5 style="font-family: 'Courier New'"> Copyright (C)2021 - Made with &hearts; in Italy by <a
+                href="https://linktr.ee/silviosanto" rel="external">Silvio Santoriello</a>
+        </h5>
+    </footer>
 </body>
 
 </html>
