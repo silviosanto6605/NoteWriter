@@ -28,6 +28,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        github_token: ${{ secrets.github_token }}
     - run: npm ci
     - run: npm run build-linux
     
@@ -47,5 +48,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        github_token: ${{ secrets.github_token }}
     - run: npm ci
     - run: npm run build-win
