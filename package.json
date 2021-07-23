@@ -1,0 +1,46 @@
+{
+  "name": "notewriter",
+  "version": "1.0.0",
+  "description": "Offline version of notewriter.tech",
+  "main": "js/main.js",
+  "author": {
+    "name": "Silvio Santoriello",
+    "email": "dev.silviosanto6605@gmail.com"
+  },
+  "maintainers": [
+    "Silvio Santoriello"
+  ],
+  "license": "GPL-3.0",
+  "homepage": "notewriter.tech",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "build-linux": "electron-builder --linux deb",
+    "build-win": "electron-builder --win"
+  },
+  "devDependencies": {
+    "electron": "^13.1.2",
+    "electron-builder": "^22.11.7"
+  },
+  "build": {
+    "appId": "notewriter",
+    "win": {
+      "target": [
+        "msi",
+        "nsis"
+      ],
+      "icon": "build/icons/icon.png"
+    },
+    "snap": {
+      "title": "NoteWriter",
+      "confinement": "strict",
+      "summary": "Offline version of notewriter.tech",
+      "grade": "stable"
+    }
+  },
+  "dependencies": {
+    "electron-prompt": "^1.6.2",
+    "latest-version": "^5.1.0"
+
+  }
+}

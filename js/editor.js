@@ -3,7 +3,13 @@ var mobile = (/iphone | ipad | ipod | android | blackberry | mini | windows\sce 
 var showingSourceCode = false;
 var isInEditMode = true;
 var DarkMode = false;
-var colorPickerisHidden = true
+var colorPickerisHidden = true;
+const pr = require('electron-prompt');
+
+
+
+
+
 
 if (mobile) {
 
@@ -127,4 +133,50 @@ button.addEventListener('click', saveTextAsFile);
 function destroyClickedElement(event) {
     // remove the link from the DOM
     document.body.removeChild(event.target);
+}
+
+function insertURL() {
+
+    pr({
+        title: 'Inserisci un url',
+        label: 'URL:',
+        value: 'http://example.org',
+        inputAttrs: {
+            type: 'text'
+        },
+        type: 'input'
+    })
+        .then((r) => {
+            if(r === null) {
+                console.log('user cancelled');
+            } else {
+                console.log(r);
+                richTextField.document.execCommand('createLink',false,r)
+            }
+        })
+        .catch(console.error);
+
+}
+
+function insertImageURL() {
+
+    pr({
+        title: "Inserisci un'immagine",
+        label: 'URL:',
+        value: 'example.jpg',
+        inputAttrs: {
+            type: 'text'
+        },
+        type: 'input'
+    })
+        .then((r) => {
+            if(r === null) {
+                console.log('user cancelled');
+            } else {
+                console.log(r);
+                richTextField.document.execCommand('insertImage',false,r)
+            }
+        })
+        .catch(console.error);
+
 }
