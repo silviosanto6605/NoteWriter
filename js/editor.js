@@ -28,7 +28,7 @@ function ChangeMode() {
         document.getElementsByTagName('iframe')[0].style.backgroundColor = "white";
         document.getElementsByTagName('footer')[0].style.color = "white";
         for (var i = 0; i < x.length; i++) {
-            x[i].style.backgroundColor = "white";
+            x[i].style.color = "white";
         }
         document.getElementById('titolo').style.color = "white";
         DarkMode = true;
@@ -42,7 +42,7 @@ function ChangeMode() {
         document.getElementById('titolo').style.color = "black";
         var j;
         for (j = 0; j < x.length; j++) {
-            x[j].style.backgroundColor = "transparent";
+            x[j].style.color = "black";
         }
         DarkMode = false;
     }
@@ -135,14 +135,15 @@ function destroyClickedElement(event) {
     document.body.removeChild(event.target);
 }
 
-function insertURL() {
+function insertURL(message,placeholder,command) {
+
 
     pr({
-        title: 'Inserisci un url',
+        title: message.toString(),
         label: 'URL:',
-        value: 'http://example.org',
+        value: placeholder.toString(),
         inputAttrs: {
-            type: 'text'
+            type: 'url'
         },
         type: 'input'
     })
@@ -151,32 +152,9 @@ function insertURL() {
                 console.log('user cancelled');
             } else {
                 console.log(r);
-                richTextField.document.execCommand('createLink',false,r)
+                richTextField.document.execCommand(command,false,r)
+
             }
         })
         .catch(console.error);
-
-}
-
-function insertImageURL() {
-
-    pr({
-        title: "Inserisci un'immagine",
-        label: 'URL:',
-        value: 'example.jpg',
-        inputAttrs: {
-            type: 'text'
-        },
-        type: 'input'
-    })
-        .then((r) => {
-            if(r === null) {
-                console.log('user cancelled');
-            } else {
-                console.log(r);
-                richTextField.document.execCommand('insertImage',false,r)
-            }
-        })
-        .catch(console.error);
-
 }

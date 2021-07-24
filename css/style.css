@@ -2,26 +2,43 @@ body {
     background-color: #EFD6AC;
 }
 
-h1 {
-    color: ghostwhite;
+#titolo{
+    color: black;
+    font-size: 40px;
+    font-family: 'Courier New';
 }
-
-
-h4 {
-    color: red;
-    text-decoration: none;
-}
-
-
 
 button{
 
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
+    font-size: 25px;
     background-color: transparent;
     cursor:pointer;
-    overflow: hidden;
     outline:none;
+    margin: 2px;
+    border-radius: 3px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border: none;
+
+}
+
+
+
+
+.editSection{
+    border: transparent;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer;
+    border: none;
+
+}
+
+.editSection button:hover {
+    background-color: rgba(123, 149, 125, 0.51);
+}
+
+#footer{
+    font-family: "Courier New", monospace;
 
 }
