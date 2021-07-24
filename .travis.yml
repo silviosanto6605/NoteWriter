@@ -8,6 +8,11 @@ matrix:
   - os: windows
 cache:
   npm: true
+
+addons:
+  apt_packages:
+    - rpm
+
 script:
   - npm run build
 deploy:
