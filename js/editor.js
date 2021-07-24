@@ -129,6 +129,7 @@ function destroyClickedElement(event) {
     document.body.removeChild(event.target);
 }
 
-function insertURL(message,placeholder) {
-    return prompt(message.toString(), 'http://')
+function insertURL(message,placeholder,command) {
+    var r =  prompt(message.toString(), 'http://').toString()
+    richTextField.document.execCommand(command,false,r)
 }

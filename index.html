@@ -85,7 +85,7 @@
             <button onclick="execCmd('redo');"><i class="fas fa-redo"></i></button>
             <button onclick="execCmd('insertUnorderedList');"><i class="fas fa-list-ul"></i></button>
             <button onclick="execCmd('insertOrderedList');"><i class="fas fa-list-ol"></i></button>
-            <button onclick="execCommandWithArg('createLink', insertURL('Inserisci un URL','http://example.com/'));"><i
+            <button onclick="insertURL('Inserisci un URL','http://example.com/','createLink');"><i
                     class="fas fa-link"></i></button>
             <button onclick="execCmd('unlink');"><i class="fas fa-unlink"></i></button>
             <button onclick="toggleSource();"><i class="fas fa-code"></i></button>
@@ -116,7 +116,7 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
             </select>
-            <button onclick="execCommandWithArg('insertImage', insertURL('Inserisci un URL immagine','http://example.com/image.png'));"><i
+            <button onclick="insertURL('Inserisci un URL immagine','http://example.com/','insertImage');"><i
                     class="fas fa-file-image"></i></button>
             <button onclick="execCmd('selectAll');">Select All</button>
             <button onclick="ChangeMode()"> Dark mode <i class="fas fa-adjust"></i></button>
