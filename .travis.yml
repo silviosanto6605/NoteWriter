@@ -18,7 +18,9 @@ script:
   
 deploy:
   provider: releases
-  api_key: $GH_TOKEN
+  api_key:
+    secure: "Q28OdxiYIizTK/tL8GV2Eq4rbMXMKx0OKBlHTHEafuQe4bggggFRZefS821yVr6sgQyzv45he0R/y/YBhckn5b1w+nAoAOgiZbUH74xGPvlvZexSPTByE4fyn+u0df002d/lgYuz6Koa6mifrmYvEW+vlj5j0TQc1yddgoIvCiBqOQb4jkcK5yz1VD23W96m3DgFcgMafrXN0fBVPAM5jnaldhYnzSuzYkUemtt6khswtE1lsro/n+CTseZRmMoTuVZ+ccmk82JawYm0PtZJjKsv6s7STXX7m44TCtFuxqt4DCg38Q16SeZL0pu46kxf0jOU40oTmeEacShsVkyjIxGOsg560lWF7poiJEiXx4bQ6qtU2Jm7YSNaumJ1pKm0P1uRD5bebAEYtgme211azVoThhqIfjEj22yRTDhI0/l2FHh9ugTmXRUvvVH1Yj9H3OJGjImbPHYdotjtMqDn7eaGdfOBLxXGI/+xC0wVlMUs6WoZyoX3zCfH3h0PfO8Z3Z2QFEU0479oKU4PP3CFcBAiwUiYibw33Wutu1IOnGGONNhWexjolIl8CbzZZC9gP5iNjmb7TsQ9Che2z2smNp1lFhF0X8iawZEyAf2xnMbHcCgbwgayK2E70YhcrWR0ruTJ/J7M2XzId1u/O+ekLm4pS9nhugfEPozsk/zSj70="
+
   skip_cleanup: true
   on:
     tags: true
