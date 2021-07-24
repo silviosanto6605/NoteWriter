@@ -10,7 +10,7 @@ on:
     branches: [ desktop-app ]
 
 jobs:
-  build:
+  release:
 
     runs-on: ${{ matrix.os }}
 
