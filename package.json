@@ -16,6 +16,7 @@
     "start": "electron .",
     "pack": "electron-builder --dir",
     "build": "electron-builder build --publish always",
+    "build-no-release": "electron-builder build --publish never",
     "build-linux": "electron-builder --linux deb",
     "build-win": "electron-builder --win"
   },
