@@ -25,9 +25,6 @@
   },
   "build": {
     "appId": "notewriter",
-    "publish": [
-      "github"
-    ],
     "win": {
       "target": [
         "msi",
