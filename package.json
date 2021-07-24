@@ -15,6 +15,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
+    "build": "electron-builder build"
     "build-linux": "electron-builder --linux deb",
     "build-win": "electron-builder --win"
   },
