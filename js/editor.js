@@ -22,7 +22,7 @@ function ChangeMode() {
         document.getElementsByTagName('iframe')[0].style.backgroundColor = "white";
         document.getElementsByTagName('footer')[0].style.color = "white";
         for (var i = 0; i < x.length; i++) {
-            x[i].style.backgroundColor = "white";
+            x[i].style.color = "white";
         }
         document.getElementById('titolo').style.color = "white";
         DarkMode = true;
@@ -36,7 +36,7 @@ function ChangeMode() {
         document.getElementById('titolo').style.color = "black";
         var j;
         for (j = 0; j < x.length; j++) {
-            x[j].style.backgroundColor = "transparent";
+            x[j].style.color = "black";
         }
         DarkMode = false;
     }
@@ -127,4 +127,8 @@ button.addEventListener('click', saveTextAsFile);
 function destroyClickedElement(event) {
     // remove the link from the DOM
     document.body.removeChild(event.target);
+}
+
+function insertURL(message,placeholder) {
+    return prompt(message.toString(), 'http://')
 }
