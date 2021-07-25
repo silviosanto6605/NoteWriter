@@ -1,6 +1,6 @@
 {
   "name": "notewriter",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Offline version of notewriter.tech",
   "main": "js/main.js",
   "author": {
