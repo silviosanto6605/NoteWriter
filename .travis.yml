@@ -13,7 +13,6 @@ cache:
 addons:
   apt_packages:
     - rpm
-    - snapcraft --classic
 
 script:
   - npm run build
