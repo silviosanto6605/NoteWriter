@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - '18'
+  - '16'
 matrix:
   include:
   - os: linux
@@ -23,7 +23,7 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
-      
+
   - provider: snap
     snap: notewriter*.snap
     channel: release
