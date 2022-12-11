@@ -1,0 +1,16 @@
+name: notwewriter 
+base: core20 
+version: '2.0.1' 
+summary: Simple note writer
+description: |
+  It's just a simple note writer. Offline version of notewriter.live
+
+grade: stable 
+confinement: strict
+
+contact: "mailto:dev.silviosanto6605@gmail.com"
+source-code : "https://github.com/silviosanto6605/NoteWriter/"
+website : "https://notewriter.live"
+parts:
+  my-part:
+    plugin: nil
