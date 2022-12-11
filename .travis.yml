@@ -23,7 +23,8 @@ deploy:
     skip_cleanup: true
     on:
       tags: true
+      
   - provider: snap
     snap: notewriter*.snap
-    channel: edge
+    channel: release
     skip_cleanup: true
